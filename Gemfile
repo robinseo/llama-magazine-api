@@ -13,6 +13,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'jb', '~> 0.8.0'
 gem 'faker', '~> 2.20'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
