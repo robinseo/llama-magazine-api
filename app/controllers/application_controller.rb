@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include ApiException::Handler
+  include ActiveStorage::SetCurrent
   attr_reader :current_user
 
   private
