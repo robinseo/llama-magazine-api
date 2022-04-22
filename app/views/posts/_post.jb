@@ -1,0 +1,6 @@
+{
+  **post.as_json(except: :user_id),
+  image_url: post.image_url,
+  liked_by_me: @current_user ? post.likes.pluck(:user_id).include?(@current_user.id) : nil,
+  user: post.user.as_json(only: [:id, :nickname])
+}

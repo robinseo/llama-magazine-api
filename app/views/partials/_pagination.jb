@@ -1,0 +1,8 @@
+{
+  per: relation.limit_value,
+  total_counts: relation.total_count,
+  total_pages: relation.total_pages,
+  current_page: relation.current_page,
+  next_page: relation.next_page,
+  is_last_page: relation.last_page?
+}

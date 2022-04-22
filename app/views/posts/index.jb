@@ -1,0 +1,5 @@
+{
+  posts: @posts.map { |post| render(partial: 'posts/post', locals: { post: post }) },
+  pagination: render(partial: 'partials/pagination', locals: {relation: @posts})
+}
+
