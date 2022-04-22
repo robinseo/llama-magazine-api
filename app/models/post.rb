@@ -10,8 +10,4 @@ class Post < ApplicationRecord
   def image_url
     file_url_of(image)
   end
-
-  def image_path
-    file_path_of(image)
-  end
 end

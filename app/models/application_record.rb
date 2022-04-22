@@ -3,11 +3,10 @@ class ApplicationRecord < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
   def file_url_of(file)
-    file.attached? ? rails_blob_url(file) : nil
+    if Rails.env.development?
+      file.attached? ? rails_blob_url(file) : nil
+    else
+      file.attached? ? file.service_url : nil
+    end
   end
-
-  def file_path_of(file)
-    file.attached? ? rails_blob_path(file) : nil
-  end
-
 end
