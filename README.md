@@ -27,6 +27,14 @@ on production
 $ heroku run db:seed
 ```
 
+####Destroy everything and replant [DANGER]
+```shell
+$ heroku restart 
+$ heroku pg:reset DATABASE --confirm llama-magazine-api
+$ heroku run rails db:migrate
+$ heroku run rails db:seed
+```
+
 
 ###Deploy
 ```shell

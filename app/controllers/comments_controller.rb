@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
 
   def set_my_comment
     @comment = @post.comments.find(params[:id])
-    raise ApiException::Forbidden unless @comment.id == @current_user.id
+    raise ApiException::Forbidden unless @comment.user_id == @current_user.id
   end
 
   def create_params
