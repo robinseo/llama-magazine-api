@@ -2,6 +2,7 @@ class AuthController < ApplicationController
   before_action :authorize!, only: :sign_out
 
   def check_available_email
+    raise ApiException::BadRequest, "Invalid Email Format"  unless /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i.match(params[:email])
     render json: { available: !User.exists?(email: params[:email]) }
   end
 
