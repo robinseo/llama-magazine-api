@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :posts do
     post '/likes', action: :like
     delete '/likes', action: :unlike
+    resources :comments
   end
 
 =begin

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_current_user, only: :index
   before_action :authorize!, only: [:create, :update, :destroy, :like, :unlike]
   before_action :set_post, only: [:show, :like, :unlike]
+  before_action :set_my_post, only: [:update, :destroy]
 
   def index
     @posts = Post.all
@@ -22,7 +23,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = @current_user.posts.find(params[:id])
     @post.update!(update_params)
 
   rescue ArgumentError
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = @current_user.posts.find(params[:id]).destroy
+    @post.destroy
   end
 
   def like
@@ -49,6 +49,12 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id] || params[:post_id])
   end
 
+  def set_my_post
+    @post = @current_user.posts.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    raise ApiException::Forbidden
+  end
+
   def order_params
     case params[:order]&.to_sym
     when :likes_count_asc
@@ -65,13 +71,13 @@ class PostsController < ApplicationController
   def create_params
     params[:user_id] = @current_user.id
     params[:image] = base64_image_to_file(params[:image])
-    params.permit(:user_id, :contents, :image, :layout)
+    params.permit(:user_id, :content, :image, :layout)
   end
 
   def update_params
     params[:user_id] = @current_user.id
     params[:image] = base64_image_to_file(params[:image]) if params[:image].present?
-    params.permit(:user_id, :contents, :image, :layout)
+    params.permit(:user_id, :content, :image, :layout)
   end
 
   def base64_image_to_file(base64_data, filename = nil)

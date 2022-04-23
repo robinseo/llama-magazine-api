@@ -1,0 +1,4 @@
+{
+  **comment.as_json(only: [:id, :content]),
+  user: comment.user.as_json(only: [:id, :nickname])
+}

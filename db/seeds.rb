@@ -4,14 +4,20 @@ kate = User.create!(email: "kate@example.com", password: "asdf", password_confir
 
 50.times do
   post = Post.new(user: [llama, kevin, kate].sample,
-                  contents: Faker::Lorem.paragraph(sentence_count: rand(5..10)),
+                  content: Faker::Lorem.paragraph(sentence_count: rand(5..10)),
                   layout: [:top, :bottom, :left, :right].sample)
   post.image.attach(io: File.open(Rails.root.join('public', 'llama.jpg')), filename: 'llama.jpg')
   post.save!
 end
 
-[llama, kevin, kate].each do |user|
+User.all.each do |user|
   Post.all.sample(rand(5..15)).each do |post|
     Like.create!(user: user, post: post)
+  end
+end
+
+User.all.each do |user|
+  Post.all.sample(rand(5..15)).each do |post|
+    Comment.create!(user: user, record: post, content: Faker::Lorem.paragraph(sentence_count: 3))
   end
 end
