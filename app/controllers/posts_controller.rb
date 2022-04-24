@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_current_user, only: :index
+  before_action :set_current_user, only: [:index, :show]
   before_action :authorize!, only: [:create, :update, :destroy, :like, :unlike]
   before_action :set_post, only: [:show, :like, :unlike]
   before_action :set_my_post, only: [:update, :destroy]

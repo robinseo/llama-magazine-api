@@ -1,6 +1,6 @@
 # Llama's Magazine - API
 
-Go forth and conquer!
+##🦙📚
 
 ###Environment
 * Ruby : 2.7.2
@@ -10,7 +10,7 @@ Go forth and conquer!
 
 ###API Document
 ```text
-The URL
+https://documenter.getpostman.com/view/630693/UyrAFxMJ#bc78741a-bf51-43f8-baf6-097f07017ed5
 ```
 
 ---
