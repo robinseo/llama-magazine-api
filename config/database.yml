@@ -81,6 +81,3 @@ test:
 #
 production:
   <<: *default
-  database: llama_magazine_api_production
-  username: llama_magazine_api
-  password: <%= ENV['LLAMA_MAGAZINE_API_DATABASE_PASSWORD'] %>
